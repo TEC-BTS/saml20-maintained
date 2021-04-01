@@ -35,32 +35,14 @@ saml.parse(rawAssertion, function(err, profile) {
 
 `options`:
 
-* `thumbprint` is the thumbprint of the trusted public key (uses the public key that comes in the assertion).
 * `publicKey` is the trusted public key.
 * `audience` (optional). If it is included audience validation will take place.
 * `bypassExpiration` (optional). This flag indicates expiration validation bypass (useful for testing, not recommended in production environments);
 
-You can use either `thumbprint` or `publicKey` but you should use at least one.
+You use `publicKey`.
 
-```javascript
 
-var saml = require('saml20-maintained');
-
-var options = {
-	thumbprint: '1aeabdfa4473ecc7efc5947b18436c575574baf8',
-	audience: 'http://myservice.com/'
-}
-
-saml.validate(rawAssertion, options, function(err, profile) {
-	// err
-
-	var claims = profile.claims; // Array of user attributes;
-	var issuer = profile.issuer; // String Issuer name.
-});
-
-```
-
-or using publicKey:
+Using publicKey:
 
 ```javascript
 
@@ -89,7 +71,6 @@ In order to run the tests you must configure `lib.index.js` with these variables
 ```javascript
 
 var issuerName = 'https://your-issuer.com';
-var thumbprint = '1aeabdfa4473ecc7efc5947b19436c575574baf8';
 var certificate = 'MIICDzCCAXygAwIBAgIQVWXAvbbQyI5BcFe0ssmeKTAJBgU...';
 var audience = 'http://your-service.com/';
 
